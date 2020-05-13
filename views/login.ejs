@@ -1,0 +1,28 @@
+<%- include('parts/header')   %>
+    <%- include('parts/navbar')   %>
+
+
+        <div class="container text-center">
+            <h3>Create Account</h3>
+            <form action="/login" method="POST">
+
+                <input type="email" class="form-control" name="email" placeholder="Email"><br>
+                <input type="password" class="form-control" name="password" placeholder="Password"><br>
+
+                <input type="submit" class="btn btn-primary" value="Login">
+            </form>
+            <br>
+            <%  if(aurhError) {%>
+                <p class="alert alert-danger">
+                    <%= aurhError %>
+                </p>
+                <% } %>
+
+                    <br>
+                    <div>
+                        Dont have Account ? <a href="/signup">Create Account</a>
+                    </div>
+        </div>
+
+
+        <%- include('parts/footer')   %>

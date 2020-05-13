@@ -1,0 +1,50 @@
+<%- include('parts/header')   %>
+    <%- include('parts/navbar')   %>
+
+
+        <div class="container">
+
+            <form action="/" method="GET">
+                <select name="category" class="form-control">
+                    <option value="all" > All </option>
+                    <option value="clothes"  > Clothes </option>
+                    <option value="computer" > Computer </option>
+                    <option value="phone"  > Phone </option>
+                </select>
+                <input type="submit" value="Filter" class="btn btn-primary">
+            </form>
+            <%  if(products.length === 0 ) { %>
+                <div class="alert alert-danger">
+                    There is no products
+                </div>
+                <% }else {%>
+
+                    <div class="row">
+                        <% for(let product of products)  { %>
+                            <div class="col col-12 col-md-6 col-lg-4 col-xs-3">
+                                <div class="card" style="width: 18rem;">
+                                    <img src="<%= product.price %>" class="card-img-top">
+                                    <div class="card-body">
+                                        <h5 class="card-title">
+                                            <a href="/product/<%= product._id %>">
+                                                <%= product.name %>
+                                            </a>
+                                            <p>Price:
+                                                <%= product.price %>
+                                            </p>
+                                        </h5>
+                                        <form class="/card" method="POST">
+                                            <input type="number" name="ammunt" class="form-control">
+                                            <input type="submit" value="Add to Card" class="btn btn-primary">
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <% } %>
+                                <% } %>
+                    </div>
+
+        </div>
+
+
+        <%- include('parts/footer')   %>
