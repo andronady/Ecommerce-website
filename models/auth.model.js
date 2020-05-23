@@ -7,6 +7,11 @@ const userSchema = mongoose.Schema({
     username: String,
     email: String,
     password: String,
+    isAdmin: {
+        type: Boolean,
+        default: false
+
+    }
 
 })
 
@@ -53,7 +58,10 @@ exports.login = (email, password) => {
                         reject('incorrect password')
                     } else {
                         mongoose.disconnect()
-                        resolve(user._id)
+                        resolve({
+                            id: user._id,
+                            isAdmin: user.isAdmin
+                        })
                     }
                 })
             }

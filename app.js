@@ -47,10 +47,14 @@ app.listen(port, () => console.log(`listeining on port ${port} ..... `))
 
 const homeRouter = require('./routes/home.routes')
 const productRouter = require('./routes/product.routes')
+const cardRouter = require('./routes/card.router')
 const authRouter = require('./routes/auth.router')
+const adminRouter = require('./routes/admin.router')
 
 app.use('/', homeRouter)
 app.use('/', authRouter)
 
 
 app.use('/product', productRouter)
+app.use('/card', cardRouter)
+app.use('/admin', adminRouter)

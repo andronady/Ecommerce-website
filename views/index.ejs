@@ -13,36 +13,49 @@
                 </select>
                 <input type="submit" value="Filter" class="btn btn-primary">
             </form>
-            <%  if(products.length === 0 ) { %>
-                <div class="alert alert-danger">
-                    There is no products
-                </div>
-                <% }else {%>
+            <% if(validationErrors) {%>
+                <p class="alert alert-danger">
+                    <%  validationErrors.msg %>
+                </p>
+                <% } %>
+                    <%  if(products.length === 0 ) { %>
+                        <div class="alert alert-danger">
+                            There is no products
+                        </div>
+                        <% }else {%>
 
-                    <div class="row">
-                        <% for(let product of products)  { %>
-                            <div class="col col-12 col-md-6 col-lg-4 col-xs-3">
-                                <div class="card" style="width: 18rem;">
-                                    <img src="<%= product.price %>" class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title">
-                                            <a href="/product/<%= product._id %>">
-                                                <%= product.name %>
-                                            </a>
-                                            <p>Price:
-                                                <%= product.price %>
-                                            </p>
-                                        </h5>
-                                        <form class="/card" method="POST">
-                                            <input type="number" name="ammunt" class="form-control">
-                                            <input type="submit" value="Add to Card" class="btn btn-primary">
-                                        </form>
+
+
+
+                            <div class="row">
+                                <% for(let product of products)  { %>
+                                    <div class="col col-12 col-md-6 col-lg-4 col-xs-3">
+                                        <div class="card" style="width: 18rem;">
+                                            <img src="<%= product.price %>" class="card-img-top">
+                                            <div class="card-body">
+                                                <h5 class="card-title">
+                                                    <a href="/product/<%= product._id %>">
+                                                        <%= product.name %>
+                                                    </a>
+                                                    <p>Price:
+                                                        <%= product.price %>
+                                                    </p>
+                                                </h5>
+                                                <form action="/card" method="POST" class="text-center">
+
+                                                    <input type="hidden" name="name" value=" <%= product.name %>">
+                                                    <input type="hidden" name="price" value=" <%= product.price %>">
+                                                    <input type="hidden" name="productId" value=" <%= product._id %>">
+                                                    <input type="hidden" name="redirectTo" value="/">
+                                                    <input type="number" name="ammount" class="form-control"><br>
+                                                    <input type="submit" value="Add to Card" class="btn btn-primary ">
+                                                </form>
+                                            </div>
+                                        </div>
                                     </div>
-                                </div>
+                                    <% } %>
+                                        <% } %>
                             </div>
-                            <% } %>
-                                <% } %>
-                    </div>
 
         </div>
 

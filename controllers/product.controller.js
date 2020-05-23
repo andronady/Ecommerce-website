@@ -12,7 +12,9 @@ exports.getProduct = (req, res, next) => {
 
     productsModel.getProductsById(id).then(products => {
         res.render('product', {
-            products: products
+            products: products,
+            isUser: req.session.userId,
+            isAdmin: req.session.isAdmin
         })
     })
 

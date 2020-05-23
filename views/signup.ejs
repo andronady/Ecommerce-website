@@ -6,14 +6,44 @@
             <h3>Create Account</h3>
             <form action="/signup" method="POST">
                 <input type="text" class="form-control" name="username" placeholder="Username"><br>
-                <input type="email" class="form-control" name="email" placeholder="Email"><br>
-                <input type="password" class="form-control" name="password" placeholder="Password"><br>
-                <input type="password" class="form-control" name="confirmPassword" placeholder="confirm Password"><br>
-                <input type="submit" class="btn btn-primary" value="create account"><br>
+                <% let usernameValidte = validationErrors.find(err => err.param === 'username') %>
+                    <% if(usernameValidte) { %>
+                        <p class="alert alert-danger">
+                            <%= usernameValidte.msg %>
+                        </p>
+                        <% } %>
+                            <input type="email" class="form-control" name="email" placeholder="Email"><br>
+                            <% let emailValidte = validationErrors.find(err => err.param === 'email') %>
+                                <% if(emailValidte) { %>
+                                    <p class="alert alert-danger">
+                                        <%= emailValidte.msg %>
+                                    </p>
+                                    <% } %>
+                                        <input type="password" class="form-control" name="password" placeholder="Password"><br>
+                                        <% let passValidte = validationErrors.find(err => err.param === 'password') %>
+                                            <% if(passValidte) { %>
+                                                <p class="alert alert-danger">
+                                                    <%= passValidte.msg %>
+                                                </p>
+                                                <% } %>
+                                                    <input type="password" class="form-control" name="confirmPassword" placeholder="confirm Password"><br>
+                                                    <input type="submit" class="btn btn-primary" value="create account"><br>
             </form>
-            <br>
-            <div>
-                Already have Account ? <a href="/login">Login</a>
-            </div>
+
+            <%  if(aurhError) {%>
+                <br>
+                <p class="alert alert-danger">
+                    <%= aurhError %>
+                </p>
+                <% } %>
+
+
+
+                    <br>
+                    <div>
+                        Already have Account ? <a href="/login">Login</a>
+                    </div>
         </div>
+
+
         <%- include('parts/footer')   %>

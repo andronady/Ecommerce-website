@@ -1,0 +1,55 @@
+<%- include('parts/header')   %>
+    <%- include('parts/navbar')   %>
+
+        <div class="container">
+            <%  if(items.length === 0 ) { %>
+                <div class="alert alert-danger">
+                    There is no items
+                </div>
+                <% } else {%>
+
+                    <table class="table">
+                        <thead>
+                            <td>#ID</td>
+                            <td>Product Name</td>
+                            <td>Price</td>
+                            <td>Amount</td>
+                            <td>Total</td>
+                            <td></td>
+                        </thead>
+                        <tbody>
+                            <% for(let i=0;i< items.length;i++ ) { %>
+                                <tr>
+                                    <td>
+                                        <%= i+1 %>
+                                    </td>
+                                    <td>
+                                        <%= items[i].name %>
+                                    </td>
+                                    <td>
+                                        <%= items[i].price %>
+                                    </td>
+                                    <form action="" method="POST">
+                                        <td>
+                                            <input type="text" name="ammount" class="form-control" value="<%=  items[i].ammount %>">
+                                        </td>
+                                        <td>
+                                            <%=  items[i].price * items[i].ammount %> $
+                                        </td>
+                                        <td>
+                                            <input type="hidden" name="cardId" class="form-control" value="<%=  items[i]._id %>">
+                                            <input type="submit" class="btn btn-success" value="Save" formaction="/card/save">
+                                            <input type="submit" class="btn btn-danger" value="Delete" formaction="/card/delete">
+                                        </td>
+                                    </form>
+
+
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                    <% } %>
+        </div>
+        <%- include('parts/footer')   %>
